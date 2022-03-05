@@ -4,22 +4,26 @@ from time import sleep, mktime
 
 # 60 % logFrequency must equal 0
 # 0 < logFrequency < 60
-logFrequency = 2
+logFrequency = 5
 
 
 # returns results dict + current unix time
 def test():
-    s = speedtest.Speedtest()
-    s.get_best_server()
-    s.download()
-    s.upload()
-    s.results.share()
+    try:
+        s = speedtest.Speedtest()
+        s.get_best_server()
+        s.download()
+        s.upload()
+        s.results.share()
 
-    results_dict = s.results.dict()
-    results_dict['unixTime'] = mktime(datetime.now().timetuple())
+        results_dict = s.results.dict()
+        results_dict['unixTime'] = mktime(datetime.now().timetuple())
 
-    print(results_dict)
-    return str(results_dict)
+        print(results_dict)
+        return str(results_dict)
+    except:
+        print("owo error moment")
+        return "owo error moment"
 
 
 if __name__ == '__main__':
